@@ -5,20 +5,18 @@ using IHost = Microsoft.Extensions.Hosting.IHost;
 IHost host = Host.CreateDefaultBuilder(args)
     .ConfigureServices(services =>
     {
-        services.AddMassTransit(x =>
-        {
-            //RabbitMQ
-            x.UsingRabbitMq((context, cfg) =>
+        services.AddHostedService<Worker>();
+        services.AddMassTransit(x => {
+            x.UsingRabbitMq((context, config) =>
             {
-                cfg.Host(
-                    Environment.GetEnvironmentVariable("HOST_RABBIT"),
-                    Environment.GetEnvironmentVariable("VHOST_RABBIT"),
-                    hst =>
-                    {
-                        hst.Username(Environment.GetEnvironmentVariable("USERNAME_RABBIT"));
-                        hst.Password(Environment.GetEnvironmentVariable("PASSWORD_RABBIT"));
-                    });
-                //create
+                config.Host("roedeer.rmq.cloudamqp.com", "vpeeygzh",
+                  credential => {
+                      credential.Username("vpeeygzh");
+                      credential.Password("t0mDd3KRsJkXRV3DXzmCUfRWmDFbFu42");
+                  });
+                config.ConfigureEndpoints(context);
+              
+                //Clienti
                 cfg.ReceiveEndpoint("Orchestrator-NewOrderEvent", e =>
                     {
                         e.Consumer<ClientNewOrderEvent>();
@@ -33,7 +31,7 @@ IHost host = Host.CreateDefaultBuilder(args)
                 });
             });
         });
-        services.AddMassTransitHostedService(true);
+        services.AddMassTransitHostedService();
     })
     .Build();
 
