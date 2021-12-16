@@ -25,34 +25,34 @@ IHost host = Host.CreateDefaultBuilder(args)
                   });
                 config.ConfigureEndpoints(context);
 
-                config.ReceiveEndpoint("CreateClientCommands", e =>
+                config.ReceiveEndpoint("gruppo2-orchestratore-CreateClientCommands", e =>
                 {
-                    e.Consumer<CreateClientConsumer>();
+                    e.Consumer<G2CreateClientConsumer>();
 
                 });
-                config.ReceiveEndpoint("UpdateClientCommands", e =>
+                config.ReceiveEndpoint("gruppo2-orchestratore-UpdateClientCommands", e =>
                 {
-                    e.Consumer<UpdateClientConsumer>();
+                    e.Consumer<G2UpdateClientConsumer>();
 
                 });
-                config.ReceiveEndpoint("DeleteClientCommands", e =>
+                config.ReceiveEndpoint("gruppo2-orchestratore-DeleteClientCommands", e =>
                 {
-                    e.Consumer<DeleteClientConsumer>();
+                    e.Consumer<G2DeleteClientConsumer>();
 
                 });
-                config.ReceiveEndpoint("CreateOrderCommands", e =>
+                config.ReceiveEndpoint("gruppo2-orchestratore-CreateOrderCommands", e =>
                 {
-                    e.Consumer<CreateOrderConsumer>();
+                    e.Consumer<G2CreateOrderConsumer>();
 
                 });
-                config.ReceiveEndpoint("UpdateOrderCommands", e =>
+                config.ReceiveEndpoint("gruppo2-orchestratore-UpdateOrderCommands", e =>
                 {
-                    e.Consumer<UpdateOrderConsumer>();
+                    e.Consumer<G2UpdateOrderConsumer>();
 
                 });
-                config.ReceiveEndpoint("DeleteOrderCommands", e =>
+                config.ReceiveEndpoint("gruppo2-orchestratore-DeleteOrderCommands", e =>
                 {
-                    e.Consumer<DeleteOrderConsumer>();
+                    e.Consumer<G2DeleteOrderConsumer>();
 
                 });
 

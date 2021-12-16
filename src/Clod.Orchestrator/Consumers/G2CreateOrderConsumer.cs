@@ -4,15 +4,13 @@ using Microservices.Ecommerce.DTO.Commands;
 
 namespace Clod.Orchestrator.Consumers
 {
-    public class UpdateOrderConsumer : IConsumer<UpdatedOrderEvent>
+    public class G2CreateOrderConsumer : IConsumer<NewOrderEvent>
     {
-
-        public async Task Consume(ConsumeContext<UpdatedOrderEvent> context)
+        public async Task Consume(ConsumeContext<NewOrderEvent> context)
         {
-
             var productsForOrderCommand = new List<ProductInOrder>();
 
-            foreach (var product in context.Message.Products)
+            foreach(var product in context.Message.Products)
             {
                 productsForOrderCommand.Add(new ProductInOrder
                 {
@@ -20,18 +18,19 @@ namespace Clod.Orchestrator.Consumers
                     OrderedQuantity = product.OrderedQuantity
                 });
             }
+            
 
-            await context.Publish(new UpdateOrderCommand
+            await context.Publish(new CreateOrderCommand
             {
+                
                 Id = context.Message.Id,
                 IdCliente = context.Message.IdCliente,
                 DiscountAmount = context.Message.DiscountAmount,
                 DiscountedPrice = context.Message.DiscountedPrice,
                 TotalPrice = context.Message.TotalPrice,
                 Products = productsForOrderCommand
+
             });
         }
-
-     
     }
 }

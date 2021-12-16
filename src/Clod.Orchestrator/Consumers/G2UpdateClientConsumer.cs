@@ -1,25 +1,23 @@
 ﻿using Gruppo3.ClientiDTO.Domain.Events;
 using MassTransit;
 using Microservices.Ecommerce.DTO.Commands;
-using System.Text.Json;
+
 
 namespace Clod.Orchestrator.Consumers
 {
-    public class CreateClientConsumer : IConsumer<CreateClientEvent>
+    public class G2UpdateClientConsumer : IConsumer<UpdateClientEvent>
     {
-        public async Task Consume(ConsumeContext<CreateClientEvent> context)
+        public async Task Consume(ConsumeContext<UpdateClientEvent> context)
         {
-            await context.Publish(new CreateClientCommands
+            await context.Publish(new UpdateClientCommands
             {
-
+                
                 Id = context.Message.Id,
                 Name = context.Message.Name,
                 Businessname = context.Message.Businessname
-                
+                 
 
             });
-
-            Console.WriteLine($"{JsonSerializer.Serialize(context.Message)}");
         }
     }
 }

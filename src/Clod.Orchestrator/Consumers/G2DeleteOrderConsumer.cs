@@ -4,7 +4,7 @@ using Microservices.Ecommerce.DTO.Commands;
 
 namespace Clod.Orchestrator.Consumers
 {
-    public class DeleteOrderConsumer : IConsumer<DeletedOrderEvent>
+    public class G2DeleteOrderConsumer : IConsumer<DeletedOrderEvent>
 {
         public async Task Consume(ConsumeContext<DeletedOrderEvent> context)
         {
