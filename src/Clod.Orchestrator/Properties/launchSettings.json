@@ -4,11 +4,7 @@
       "commandName": "Project",
       "dotnetRunMessages": true,
       "environmentVariables": {
-        "DOTNET_ENVIRONMENT": "Development",
-        "USERNAME_RABBIT": "vpeeygzh",
-        "PASSWORD_RABBIT": "t0mDd3KRsJkXRV3DXzmCUfRWmDFbFu42",
-        "HOST_RABBIT": "roedeer.rmq.cloudamqp.com",
-        "VHOST_RABBIT": "vpeeygzh"
+        "DOTNET_ENVIRONMENT": "Development"
       }
     }
   }

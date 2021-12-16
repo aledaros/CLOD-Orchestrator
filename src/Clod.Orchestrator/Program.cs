@@ -1,4 +1,4 @@
-using Clod.Orchestrator.Consumers;
+using Clod.Orchestrator;
 using MassTransit;
 using IHost = Microsoft.Extensions.Hosting.IHost;
 
@@ -15,20 +15,6 @@ IHost host = Host.CreateDefaultBuilder(args)
                       credential.Password("t0mDd3KRsJkXRV3DXzmCUfRWmDFbFu42");
                   });
                 config.ConfigureEndpoints(context);
-              
-                //Clienti
-                cfg.ReceiveEndpoint("Orchestrator-NewOrderEvent", e =>
-                    {
-                        e.Consumer<ClientNewOrderEvent>();
-                    });
-                cfg.ReceiveEndpoint("Orchestrator-UpdateOrderEvent", e =>
-                {
-                    e.Consumer<ClientUpdateOrderEvent>();
-                });
-                cfg.ReceiveEndpoint("Orchestrator-DeleteOrderEvent", e =>
-                {
-                    e.Consumer<ClientDeleteOrderEvent>();
-                });
             });
         });
         services.AddMassTransitHostedService();
