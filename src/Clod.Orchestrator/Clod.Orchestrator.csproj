@@ -8,6 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Gruppo3.ClientiDTO.Domain" Version="1.1.0" />
+    <PackageReference Include="Gruppo4.Microservizi.Commands" Version="1.0.0" />
     <PackageReference Include="MassTransit.AspNetCore" Version="7.3.0" />
     <PackageReference Include="MassTransit.RabbitMQ" Version="7.3.0" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.0" />
