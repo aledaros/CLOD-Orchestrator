@@ -8,8 +8,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Gruppo4MicroserviziDTO" Version="1.0.2" />
+    <PackageReference Include="MacNuget.Warehouse.Commands" Version="0.0.1" />
+    <PackageReference Include="MacNuget.Warehouse.Events" Version="0.0.1" />
     <PackageReference Include="MassTransit.AspNetCore" Version="7.3.0" />
     <PackageReference Include="MassTransit.RabbitMQ" Version="7.3.0" />
+    <PackageReference Include="Microservices.Ecommerce.DTO" Version="3.0.1" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.0" />
   </ItemGroup>
 </Project>
