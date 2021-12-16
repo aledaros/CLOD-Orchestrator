@@ -8,6 +8,14 @@ IHost host = Host.CreateDefaultBuilder(args)
     {
         services.AddHostedService<Worker>();
         services.AddMassTransit(x => {
+
+            //x.AddConsumer<CreateClientConsumer>();
+            //x.AddConsumer<DeleteClientConsumer>();
+            //x.AddConsumer<UpdateClientConsumer>();
+            //x.AddConsumer<NewOrderConsumer>();
+            //x.AddConsumer<DeleteOrderConsumer>();
+            //x.AddConsumer<UpdateOrderConsumer>();
+
             x.UsingRabbitMq((context, config) =>
             {
                 config.Host("roedeer.rmq.cloudamqp.com", "vpeeygzh",
@@ -17,43 +25,37 @@ IHost host = Host.CreateDefaultBuilder(args)
                   });
                 config.ConfigureEndpoints(context);
 
-                config.ReceiveEndpoint("gruppo2-CreateClientQueue", e =>
+                config.ReceiveEndpoint("CreateClientCommands", e =>
                 {
-                    e.Consumer<CreateClientConsumer>(context);
+                    e.Consumer<CreateClientConsumer>();
+
+                });
+                config.ReceiveEndpoint("UpdateClientCommands", e =>
+                {
+                    e.Consumer<CreateClientConsumer>();
+
+                });
+                config.ReceiveEndpoint("DeleteClientCommands", e =>
+                {
+                    e.Consumer<CreateClientConsumer>();
+
+                });
+                config.ReceiveEndpoint("CreateOrderCommand", e =>
+                {
+                    e.Consumer<CreateClientConsumer>();
+
+                });
+                config.ReceiveEndpoint("UpdateOrderCommand", e =>
+                {
+                    e.Consumer<CreateClientConsumer>();
+
+                });
+                config.ReceiveEndpoint("DeleteOrderCommand", e =>
+                {
+                    e.Consumer<CreateClientConsumer>();
 
                 });
 
-
-                config.ReceiveEndpoint("gruppo2-DeleteClientQueue", e =>
-                {
-                    e.Consumer<DeleteClientConsumer>(context);
-
-                });
-
-                config.ReceiveEndpoint("gruppo2-UpdateClientQueue", e =>
-                {
-                    e.Consumer<UpdateClientConsumer>(context);
-
-                });
-
-                config.ReceiveEndpoint("gruppo2-NewOrderQueue", e =>
-                {
-                    e.Consumer<NewOrderConsumer>(context);
-
-                });
-
-                config.ReceiveEndpoint("gruppo2-DeleteOrderQueue", e =>
-                {
-
-                    e.Consumer<DeleteOrderConsumer>(context);
-
-                });
-
-                config.ReceiveEndpoint("gruppo2-UpdateOrderQueue", e =>
-                {
-                    e.Consumer<UpdateOrderEvent>(context);
-
-                });
             });
         });
         services.AddMassTransitHostedService();

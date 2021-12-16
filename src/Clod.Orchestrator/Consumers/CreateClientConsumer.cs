@@ -1,7 +1,7 @@
 ﻿using Gruppo3.ClientiDTO.Domain.Events;
 using MassTransit;
 using Microservices.Ecommerce.DTO.Commands;
-
+using System.Text.Json;
 
 namespace Clod.Orchestrator.Consumers
 {
@@ -18,6 +18,8 @@ namespace Clod.Orchestrator.Consumers
                 
 
             });
+
+            Console.WriteLine($"{JsonSerializer.Serialize(context.Message)}");
         }
     }
 }
