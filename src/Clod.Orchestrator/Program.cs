@@ -102,6 +102,7 @@ IHost host = Host.CreateDefaultBuilder(args)
                     {
                         e.Consumer<ClientNewOrderEvent>();
                     });
+              
                 config.ReceiveEndpoint("gruppo3-orch-UpdateOrderEvent", e =>
                 {
                     e.Consumer<ClientUpdateOrderEvent>();
@@ -110,8 +111,42 @@ IHost host = Host.CreateDefaultBuilder(args)
                 {
                     e.Consumer<ClientDeleteOrderEvent>();
                 });
+                
+                // Products Endpoints
+                config.ReceiveEndpoint("gruppo2-orchestratore-CreateClientCommands", e =>
+                {
+                    e.Consumer<G2CreateClientConsumer>();
+
+                });
+                config.ReceiveEndpoint("gruppo2-orchestratore-UpdateClientCommands", e =>
+                {
+                    e.Consumer<G2UpdateClientConsumer>();
+
+                });
+                config.ReceiveEndpoint("gruppo2-orchestratore-DeleteClientCommands", e =>
+                {
+                    e.Consumer<G2DeleteClientConsumer>();
+
+                });
+                config.ReceiveEndpoint("gruppo2-orchestratore-CreateOrderCommands", e =>
+                {
+                    e.Consumer<G2CreateOrderConsumer>();
+
+                });
+                config.ReceiveEndpoint("gruppo2-orchestratore-UpdateOrderCommands", e =>
+                {
+                    e.Consumer<G2UpdateOrderConsumer>();
+
+                });
+              
+                config.ReceiveEndpoint("gruppo2-orchestratore-DeleteOrderCommands", e =>
+                {
+                    e.Consumer<G2DeleteOrderConsumer>();
+
+                });
 
                 config.ConfigureEndpoints(context);
+
             });
 
         });
