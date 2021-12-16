@@ -1,11 +1,6 @@
 ﻿using Gruppo3.ClientiDTO.Domain.Commands;
 using Gruppo4MicroserviziDTO.DTOs;
 using MassTransit;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Clod.Orchestrator.Consumers
 {
