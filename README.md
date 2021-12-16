@@ -3,14 +3,14 @@
 ## Composizione Gruppo
 
 - Clienti:
-    Da Ros
-    Appiah
+    - Da Ros
+    - Appiah
 - Prodotti: 
-    De Bortoli
-    Del Negro
+    - De Bortoli
+    - Del Negro
 - Magazzino:
-    Seshi
-    Stefan
+    - Seshi
+    - Stefan
 - Ordini:
-    Piaia
-    Caragata
+    - Piaia
+    - Caragata
