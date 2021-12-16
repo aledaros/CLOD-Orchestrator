@@ -20,5 +20,6 @@ IHost host = Host.CreateDefaultBuilder(args)
         services.AddMassTransitHostedService();
     })
     .Build();
+//fgoi2i2oio
 
 await host.RunAsync();
