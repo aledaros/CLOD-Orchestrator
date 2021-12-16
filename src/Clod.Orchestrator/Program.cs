@@ -49,6 +49,20 @@ IHost host = Host.CreateDefaultBuilder(args)
                 });
 
                 config.ConfigureEndpoints(context);
+              
+                //Clienti
+                cfg.ReceiveEndpoint("Orchestrator-NewOrderEvent", e =>
+                    {
+                        e.Consumer<ClientNewOrderEvent>();
+                    });
+                cfg.ReceiveEndpoint("Orchestrator-UpdateOrderEvent", e =>
+                {
+                    e.Consumer<ClientUpdateOrderEvent>();
+                });
+                cfg.ReceiveEndpoint("Orchestrator-DeleteOrderEvent", e =>
+                {
+                    e.Consumer<ClientDeleteOrderEvent>();
+                });
             });
 
         });
