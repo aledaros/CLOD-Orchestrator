@@ -42,17 +42,17 @@ IHost host = Host.CreateDefaultBuilder(args)
                 });
                 config.ReceiveEndpoint("CreateOrderCommands", e =>
                 {
-                    e.Consumer<CreateClientConsumer>();
+                    e.Consumer<CreateOrderConsumer>();
 
                 });
                 config.ReceiveEndpoint("UpdateOrderCommands", e =>
                 {
-                    e.Consumer<UpdateClientConsumer>();
+                    e.Consumer<UpdateOrderConsumer>();
 
                 });
                 config.ReceiveEndpoint("DeleteOrderCommands", e =>
                 {
-                    e.Consumer<DeleteClientConsumer>();
+                    e.Consumer<DeleteOrderConsumer>();
 
                 });
 

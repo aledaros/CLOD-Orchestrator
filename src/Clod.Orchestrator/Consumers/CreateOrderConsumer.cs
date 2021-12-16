@@ -4,7 +4,7 @@ using Microservices.Ecommerce.DTO.Commands;
 
 namespace Clod.Orchestrator.Consumers
 {
-    public class NewOrderConsumer : IConsumer<NewOrderEvent>
+    public class CreateOrderConsumer : IConsumer<NewOrderEvent>
     {
         public async Task Consume(ConsumeContext<NewOrderEvent> context)
         {
