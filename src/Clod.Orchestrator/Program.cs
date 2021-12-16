@@ -31,40 +31,37 @@ IHost host = Host.CreateDefaultBuilder(args)
                       credential.Password("t0mDd3KRsJkXRV3DXzmCUfRWmDFbFu42");
                   });
 
-
-                config.ConfigureEndpoints(context);
-
-
-                config.ReceiveEndpoint("orders_create_client", e =>
+                // Orders Endpoints 
+                config.ReceiveEndpoint("gruppo4-orch-orders_create_client", e =>
                 {
                     e.Consumer<CreateClientEventConsumer>();
                 });
-                config.ReceiveEndpoint("orders_product_refill", e =>
+                config.ReceiveEndpoint("gruppo4-orch-orders_product_refill", e =>
                 {
                     e.Consumer<NewRefillEventConsumer>();
                 });
 
-                config.ReceiveEndpoint("orders_update_client", e =>
+                config.ReceiveEndpoint("gruppo4-orch-orders_update_client", e =>
                 {
                     e.Consumer<UpdateClientEventConsumer>(context);
                 });
 
-                config.ReceiveEndpoint("orders_delete_product", e =>
+                config.ReceiveEndpoint("gruppo4-orch-orders_delete_product", e =>
                 {
                     e.Consumer<DeleteProductEventConsumer>(context);
                 });
 
-                config.ReceiveEndpoint("orders_new_product", e =>
+                config.ReceiveEndpoint("gruppo4-orch-orders_new_product", e =>
                 {
                     e.Consumer<NewProductEventConsumer>(context);
                 });
 
-                config.ReceiveEndpoint("orders_update_product", e =>
+                config.ReceiveEndpoint("gruppo4-orch-orders_update_product", e =>
                 {
                     e.Consumer<UpdateProductEventConsumer>(context);
                 });
 
-                config.ReceiveEndpoint("orders_delete_client", e =>
+                config.ReceiveEndpoint("gruppo4-orch-orders_delete_client", e =>
                 {
                     e.Consumer<DeleteClientEventConsumer>(context);
                 });
@@ -99,8 +96,6 @@ IHost host = Host.CreateDefaultBuilder(args)
                 {
                     e.Consumer<DeleteOrderConsumer>();
                 });
-
-                config.ConfigureEndpoints(context);
               
                 // Customers Endpoints
                 config.ReceiveEndpoint("gruppo3-orch-NewOrderEvent", e =>
@@ -115,6 +110,8 @@ IHost host = Host.CreateDefaultBuilder(args)
                 {
                     e.Consumer<ClientDeleteOrderEvent>();
                 });
+
+                config.ConfigureEndpoints(context);
             });
 
         });

@@ -1,13 +1,11 @@
 ﻿using Gruppo4.Microservizi.Commands.CommandsDTO.Products;
 using MassTransit;
-using Microservices.Ecommerce.DTO.Commands;
 using Microservices.Ecommerce.DTO.Events;
 
 namespace Gruppo4.Microservizi.AppCore.Consumers.Products
 {
     public class NewProductEventConsumer : IConsumer<NewProductEvent>
     {
-
         public async Task Consume(ConsumeContext<NewProductEvent> context)
         {
             await context.Publish(new CreateProduct

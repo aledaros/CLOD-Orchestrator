@@ -6,8 +6,6 @@ namespace Gruppo4.Microservizi.AppCore.Consumers.Products
 {
     public class UpdateProductEventConsumer : IConsumer<UpdateProductEvent>
     {
-
-
         public async Task Consume(ConsumeContext<UpdateProductEvent> context)
         {
             await context.Publish(new UpdateProduct

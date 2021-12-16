@@ -1,5 +1,4 @@
 ﻿using Gruppo3.ClientiDTO.Domain.Events;
-using Gruppo3.ClientiDTO.Domain;
 using MassTransit;
 using Gruppo4.Microservizi.Commands.CommandsDTO.Customers;
 
