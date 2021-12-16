@@ -19,32 +19,32 @@ IHost host = Host.CreateDefaultBuilder(args)
                   });
 
                 // Warehouse Endpoints 
-                config.ReceiveEndpoint("orch-warehouse-update-product-event", e =>
+                config.ReceiveEndpoint("gruppo1-orch-update-product-event", e =>
                 {
                     e.Consumer<UpdateProductConsumer>();
                 });
 
-                config.ReceiveEndpoint("orch-warehouse-new-product-event", e =>
+                config.ReceiveEndpoint("gruppo1-orch-new-product-event", e =>
                 {
                     e.Consumer<NewProductConsumer>();
                 });
 
-                config.ReceiveEndpoint("orch-warehouse-delete-product-event", e =>
+                config.ReceiveEndpoint("gruppo1-orch-delete-product-event", e =>
                 {
                     e.Consumer<DeleteProductConsumer>();
                 });
 
-                config.ReceiveEndpoint("orch-warehouse-new-order-event", e =>
+                config.ReceiveEndpoint("gruppo1-orch-new-order-event", e =>
                 {
                     e.Consumer<NewOrderConsumer>();
                 });
 
-                config.ReceiveEndpoint("orch-warehouse-update-order-event", e =>
+                config.ReceiveEndpoint("gruppo1-orch-update-order-event", e =>
                 {
                     e.Consumer<UpdateOrderConsumer>();
                 });
 
-                config.ReceiveEndpoint("orch-warehouse-delete-order-event", e =>
+                config.ReceiveEndpoint("gruppo1-orch-delete-order-event", e =>
                 {
                     e.Consumer<DeleteOrderConsumer>();
                 });
@@ -52,15 +52,15 @@ IHost host = Host.CreateDefaultBuilder(args)
                 config.ConfigureEndpoints(context);
               
                 // Customers Endpoints
-                config.ReceiveEndpoint("Orchestrator-NewOrderEvent", e =>
+                config.ReceiveEndpoint("gruppo3-orch-NewOrderEvent", e =>
                     {
                         e.Consumer<ClientNewOrderEvent>();
                     });
-                config.ReceiveEndpoint("Orchestrator-UpdateOrderEvent", e =>
+                config.ReceiveEndpoint("gruppo3-orch-UpdateOrderEvent", e =>
                 {
                     e.Consumer<ClientUpdateOrderEvent>();
                 });
-                config.ReceiveEndpoint("Orchestrator-DeleteOrderEvent", e =>
+                config.ReceiveEndpoint("gruppo3-orch-DeleteOrderEvent", e =>
                 {
                     e.Consumer<ClientDeleteOrderEvent>();
                 });
