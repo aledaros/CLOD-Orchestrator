@@ -8,6 +8,7 @@ using IHost = Microsoft.Extensions.Hosting.IHost;
 using Gruppo4.Microservizi.AppCore.Consumers.Customers;
 using Gruppo4.Microservizi.AppCore.Consumers.Warehouse;
 using Gruppo4.Microservizi.AppCore.Consumers.Products;
+using Clod.Orchestrator.Consumers;
 
 IHost host = Host.CreateDefaultBuilder(args)
     .ConfigureServices(services =>
@@ -35,36 +36,36 @@ IHost host = Host.CreateDefaultBuilder(args)
                 config.ConfigureEndpoints(context);
 
 
-                config.ReceiveEndpoint("orders_create_client", e =>
+                config.ReceiveEndpoint("gruppo4-orchestratore-orders_create_client", e =>
                 {
                     e.Consumer<CreateClientEventConsumer>();
                 });
-                config.ReceiveEndpoint("orders_product_refill", e =>
+                config.ReceiveEndpoint("gruppo4-orchestratore-orders_product_refill", e =>
                 {
                     e.Consumer<NewRefillEventConsumer>();
                 });
 
-                config.ReceiveEndpoint("orders_update_client", e =>
+                config.ReceiveEndpoint("gruppo4-orchestratore-orders_update_client", e =>
                 {
                     e.Consumer<UpdateClientEventConsumer>(context);
                 });
 
-                config.ReceiveEndpoint("orders_delete_product", e =>
+                config.ReceiveEndpoint("gruppo4-orchestratore-orders_delete_product", e =>
                 {
                     e.Consumer<DeleteProductEventConsumer>(context);
                 });
 
-                config.ReceiveEndpoint("orders_new_product", e =>
+                config.ReceiveEndpoint("gruppo4-orchestratore-orders_new_product", e =>
                 {
                     e.Consumer<NewProductEventConsumer>(context);
                 });
 
-                config.ReceiveEndpoint("orders_update_product", e =>
+                config.ReceiveEndpoint("gruppo4-orchestratore-orders_update_product", e =>
                 {
                     e.Consumer<UpdateProductEventConsumer>(context);
                 });
 
-                config.ReceiveEndpoint("orders_delete_client", e =>
+                config.ReceiveEndpoint("gruppo4-orchestratore-orders_delete_client", e =>
                 {
                     e.Consumer<DeleteClientEventConsumer>(context);
                 });
