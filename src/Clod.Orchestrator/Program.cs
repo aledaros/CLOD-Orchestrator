@@ -18,6 +18,7 @@ IHost host = Host.CreateDefaultBuilder(args)
                       credential.Password("t0mDd3KRsJkXRV3DXzmCUfRWmDFbFu42");
                   });
 
+                // Warehouse Endpoints 
                 config.ReceiveEndpoint("orch-warehouse-update-product-event", e =>
                 {
                     e.Consumer<UpdateProductConsumer>();
@@ -50,16 +51,16 @@ IHost host = Host.CreateDefaultBuilder(args)
 
                 config.ConfigureEndpoints(context);
               
-                //Clienti
-                cfg.ReceiveEndpoint("Orchestrator-NewOrderEvent", e =>
+                // Customers Endpoints
+                config.ReceiveEndpoint("Orchestrator-NewOrderEvent", e =>
                     {
                         e.Consumer<ClientNewOrderEvent>();
                     });
-                cfg.ReceiveEndpoint("Orchestrator-UpdateOrderEvent", e =>
+                config.ReceiveEndpoint("Orchestrator-UpdateOrderEvent", e =>
                 {
                     e.Consumer<ClientUpdateOrderEvent>();
                 });
-                cfg.ReceiveEndpoint("Orchestrator-DeleteOrderEvent", e =>
+                config.ReceiveEndpoint("Orchestrator-DeleteOrderEvent", e =>
                 {
                     e.Consumer<ClientDeleteOrderEvent>();
                 });
