@@ -11,11 +11,6 @@ namespace Clod.Orchestrator.Consumers
 {
     public class ClientUpdateOrderEvent : IConsumer<UpdatedOrderEvent>
     {
-        readonly private IBus _rabbit;
-        public ClientUpdateOrderEvent(IBus rabbit)
-        {
-            _rabbit = rabbit;
-        }
         public Task Consume(ConsumeContext<UpdatedOrderEvent> context)
         {
             //get order
@@ -30,7 +25,7 @@ namespace Clod.Orchestrator.Consumers
             };
 
             //publish
-            _rabbit.Publish(client);
+            context.Publish(client);
 
             return Task.CompletedTask;
         }

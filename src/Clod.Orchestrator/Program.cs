@@ -7,10 +7,6 @@ IHost host = Host.CreateDefaultBuilder(args)
     {
         services.AddMassTransit(x =>
         {
-            x.AddConsumer<ClientDeleteOrderEvent>();
-            x.AddConsumer<ClientNewOrderEvent>();
-            x.AddConsumer<ClientUpdateOrderEvent>();
-
             //RabbitMQ
             x.UsingRabbitMq((context, cfg) =>
             {
@@ -25,15 +21,15 @@ IHost host = Host.CreateDefaultBuilder(args)
                 //create
                 cfg.ReceiveEndpoint("Orchestrator-NewOrderEvent", e =>
                     {
-                        e.ConfigureConsumer<ClientNewOrderEvent>(context);
+                        e.Consumer<ClientNewOrderEvent>();
                     });
                 cfg.ReceiveEndpoint("Orchestrator-UpdateOrderEvent", e =>
                 {
-                    e.ConfigureConsumer<ClientUpdateOrderEvent>(context);
+                    e.Consumer<ClientUpdateOrderEvent>();
                 });
                 cfg.ReceiveEndpoint("Orchestrator-DeleteOrderEvent", e =>
                 {
-                    e.ConfigureConsumer<ClientDeleteOrderEvent>(context);
+                    e.Consumer<ClientDeleteOrderEvent>();
                 });
             });
         });
