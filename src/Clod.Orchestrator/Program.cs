@@ -1,9 +1,6 @@
 using Clod.Orchestrator;
-using Gruppo3.ClientiDTO.Domain.Events;
 using Clod.Orchestrator.Consumers;
 using MassTransit;
-using MacNuget.Warehouse.Events;
-
 using IHost = Microsoft.Extensions.Hosting.IHost;
 using Gruppo4.Microservizi.AppCore.Consumers.Customers;
 using Gruppo4.Microservizi.AppCore.Consumers.Warehouse;
