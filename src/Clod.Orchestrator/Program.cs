@@ -3,8 +3,8 @@ using Clod.Orchestrator.Consumers;
 using MassTransit;
 using IHost = Microsoft.Extensions.Hosting.IHost;
 using Gruppo4.Microservizi.AppCore.Consumers.Customers;
-using Gruppo4.Microservizi.AppCore.Consumers.Warehouse;
-using Gruppo4.Microservizi.AppCore.Consumers.Products;
+using Clod.Orchestrator.Consumers.Warehouse;
+using Clod.Orchestrator.Consumers.Products;
 
 IHost host = Host.CreateDefaultBuilder(args)
     .ConfigureServices(services =>
@@ -66,17 +66,17 @@ IHost host = Host.CreateDefaultBuilder(args)
                 // Warehouse Endpoints 
                 config.ReceiveEndpoint("gruppo1-orch-update-product-event", e =>
                 {
-                    e.Consumer<UpdateProductConsumer>();
+                    e.Consumer<UpdateProductEventConsumer>();
                 });
 
                 config.ReceiveEndpoint("gruppo1-orch-new-product-event", e =>
                 {
-                    e.Consumer<NewProductConsumer>();
+                    e.Consumer<NewProductEventConsumer>();
                 });
 
                 config.ReceiveEndpoint("gruppo1-orch-delete-product-event", e =>
                 {
-                    e.Consumer<DeleteProductConsumer>();
+                    e.Consumer<DeleteProductEventConsumer>();
                 });
 
                 config.ReceiveEndpoint("gruppo1-orch-new-order-event", e =>
