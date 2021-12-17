@@ -20,10 +20,4 @@
     <PackageReference Include="Microservices.Ecommerce.DTO" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.0" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Consumers\Client\" />
-    <Folder Include="Consumers\Product\" />
-    <Folder Include="Consumers\Order\" />
-  </ItemGroup>
 </Project>
