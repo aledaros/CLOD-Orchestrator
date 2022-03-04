@@ -1,26 +1,16 @@
 using Clod.Orchestrator;
-using Gruppo3.ClientiDTO.Domain.Events;
-using Clod.Orchestrator.Consumers;
 using MassTransit;
-using MacNuget.Warehouse.Events;
-
 using IHost = Microsoft.Extensions.Hosting.IHost;
-using Gruppo4.Microservizi.AppCore.Consumers.Customers;
-using Gruppo4.Microservizi.AppCore.Consumers.Warehouse;
-using Gruppo4.Microservizi.AppCore.Consumers.Products;
+using Clod.Orchestrator.Consumers.Warehouse;
+using Clod.Orchestrator.Consumers.Products;
+using Clod.Orchestrator.Consumers.Client;
+using Clod.Orchestrator.Consumers.Order;
 
 IHost host = Host.CreateDefaultBuilder(args)
     .ConfigureServices(services =>
     {
         services.AddHostedService<Worker>();
         services.AddMassTransit(x => {
-            x.AddConsumer<CreateClientEventConsumer>();
-            x.AddConsumer<NewRefillEventConsumer>();
-            x.AddConsumer<UpdateClientEventConsumer>();
-            x.AddConsumer<DeleteProductEventConsumer>();
-            x.AddConsumer<UpdateProductEventConsumer>();
-            x.AddConsumer<NewRefillEventConsumer>();
-            x.AddConsumer<DeleteClientEventConsumer>();
 
             x.UsingRabbitMq((context, config) =>
             {
@@ -34,7 +24,7 @@ IHost host = Host.CreateDefaultBuilder(args)
                 // Orders Endpoints 
                 config.ReceiveEndpoint("gruppo4-orch-orders_create_client", e =>
                 {
-                    e.Consumer<CreateClientEventConsumer>();
+                    e.Consumer<NewClientEventConsumer>();
                 });
                 config.ReceiveEndpoint("gruppo4-orch-orders_product_refill", e =>
                 {
@@ -43,110 +33,108 @@ IHost host = Host.CreateDefaultBuilder(args)
 
                 config.ReceiveEndpoint("gruppo4-orch-orders_update_client", e =>
                 {
-                    e.Consumer<UpdateClientEventConsumer>(context);
+                    e.Consumer<UpdateClientEventConsumer>();
                 });
 
                 config.ReceiveEndpoint("gruppo4-orch-orders_delete_product", e =>
                 {
-                    e.Consumer<DeleteProductEventConsumer>(context);
+                    e.Consumer<DeleteProductEventConsumer>();
                 });
 
                 config.ReceiveEndpoint("gruppo4-orch-orders_new_product", e =>
                 {
-                    e.Consumer<NewProductEventConsumer>(context);
+                    e.Consumer<NewProductEventConsumer>();
                 });
 
                 config.ReceiveEndpoint("gruppo4-orch-orders_update_product", e =>
                 {
-                    e.Consumer<UpdateProductEventConsumer>(context);
+                    e.Consumer<UpdateProductEventConsumer>();
                 });
 
                 config.ReceiveEndpoint("gruppo4-orch-orders_delete_client", e =>
                 {
-                    e.Consumer<DeleteClientEventConsumer>(context);
+                    e.Consumer<DeleteClientEventConsumer>();
                 });
 
                 // Warehouse Endpoints 
                 config.ReceiveEndpoint("gruppo1-orch-update-product-event", e =>
                 {
-                    e.Consumer<UpdateProductConsumer>();
+                    e.Consumer<UpdateProductEventConsumer>();
                 });
 
                 config.ReceiveEndpoint("gruppo1-orch-new-product-event", e =>
                 {
-                    e.Consumer<NewProductConsumer>();
+                    e.Consumer<NewProductEventConsumer>();
                 });
 
                 config.ReceiveEndpoint("gruppo1-orch-delete-product-event", e =>
                 {
-                    e.Consumer<DeleteProductConsumer>();
+                    e.Consumer<DeleteProductEventConsumer>();
                 });
 
                 config.ReceiveEndpoint("gruppo1-orch-new-order-event", e =>
                 {
-                    e.Consumer<NewOrderConsumer>();
+                    e.Consumer<NewOrdersEventConsumer>();
                 });
 
                 config.ReceiveEndpoint("gruppo1-orch-update-order-event", e =>
                 {
-                    e.Consumer<UpdateOrderConsumer>();
+                    e.Consumer<UpdateOrdersEventConsumer>();
                 });
 
                 config.ReceiveEndpoint("gruppo1-orch-delete-order-event", e =>
                 {
-                    e.Consumer<DeleteOrderConsumer>();
+                    e.Consumer<DeleteOrdersEventConsumer>();
                 });
               
                 // Customers Endpoints
                 config.ReceiveEndpoint("gruppo3-orch-NewOrderEvent", e =>
-                    {
-                        e.Consumer<ClientNewOrderEvent>();
-                    });
+                {
+                    e.Consumer<NewOrdersEventConsumer>();
+                });
               
                 config.ReceiveEndpoint("gruppo3-orch-UpdateOrderEvent", e =>
                 {
-                    e.Consumer<ClientUpdateOrderEvent>();
+                    e.Consumer<UpdateOrdersEventConsumer>();
                 });
                 config.ReceiveEndpoint("gruppo3-orch-DeleteOrderEvent", e =>
                 {
-                    e.Consumer<ClientDeleteOrderEvent>();
+                    e.Consumer<DeleteOrdersEventConsumer>();
                 });
                 
                 // Products Endpoints
                 config.ReceiveEndpoint("gruppo2-orchestratore-CreateClientCommands", e =>
                 {
-                    e.Consumer<G2CreateClientConsumer>();
+                    e.Consumer<NewClientEventConsumer>();
 
                 });
                 config.ReceiveEndpoint("gruppo2-orchestratore-UpdateClientCommands", e =>
                 {
-                    e.Consumer<G2UpdateClientConsumer>();
+                    e.Consumer<UpdateClientEventConsumer>();
 
                 });
                 config.ReceiveEndpoint("gruppo2-orchestratore-DeleteClientCommands", e =>
                 {
-                    e.Consumer<G2DeleteClientConsumer>();
+                    e.Consumer<DeleteClientEventConsumer>();
 
                 });
                 config.ReceiveEndpoint("gruppo2-orchestratore-CreateOrderCommands", e =>
                 {
-                    e.Consumer<G2CreateOrderConsumer>();
+                    e.Consumer<NewOrdersEventConsumer>();
 
                 });
                 config.ReceiveEndpoint("gruppo2-orchestratore-UpdateOrderCommands", e =>
                 {
-                    e.Consumer<G2UpdateOrderConsumer>();
+                    e.Consumer<UpdateOrdersEventConsumer>();
 
                 });
               
                 config.ReceiveEndpoint("gruppo2-orchestratore-DeleteOrderCommands", e =>
                 {
-                    e.Consumer<G2DeleteOrderConsumer>();
+                    e.Consumer<DeleteOrdersEventConsumer>();
 
                 });
-
                 config.ConfigureEndpoints(context);
-
             });
 
         });

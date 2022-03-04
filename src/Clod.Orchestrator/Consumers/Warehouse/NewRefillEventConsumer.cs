@@ -2,12 +2,13 @@
 using MacNuget.Warehouse.Events;
 using MassTransit;
 
-namespace Gruppo4.Microservizi.AppCore.Consumers.Warehouse
+namespace Clod.Orchestrator.Consumers.Warehouse
 {
     public class NewRefillEventConsumer : IConsumer<NewRefillEvent>
     {
         public async Task Consume(ConsumeContext<NewRefillEvent> context)
         {
+            // Gruppo 4
             await context.Publish(new RefillProduct
             {
                 Id = context.Message.Product.Id,
